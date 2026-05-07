@@ -116,11 +116,11 @@ $log && echo "-14 waiting for silencing and wifi connection" >> /mnt/log.txt
 
 # setup WiFi connection after 30s
 # insert the SSID and PWD of your WiFi
-(sleep 30 && /mnt/hack/wifi.sh $SSID $PWD && httpclt get 'http://127.0.0.1:8001/playaudio?file=/mnt/RunSD.wav') &
+(sleep 30 && /mnt/hack/wifi.sh $SSID $PWD $NTP_SERVER && httpclt get 'http://127.0.0.1:8001/playaudio?file=/mnt/RunSD.wav') &
 
 $log && echo "-   SSID:$SSID" >> /mnt/log.txt
 $log && echo "-   PWD :$PWD" >> /mnt/log.txt
+$log && echo "-   NTP_SERVER :$NTP_SERVER" >> /mnt/log.txt
 $log && echo "-15 EndOfScript" >> /mnt/log.txt
 
 #	<EOF>
-
