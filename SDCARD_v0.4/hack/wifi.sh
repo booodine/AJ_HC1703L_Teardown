@@ -5,12 +5,13 @@
 # then syncronize clock with ntp
 
 if [ $# -lt 2 ]; then
-    echo "Usage: $0 SSID PASSWORD"
+    echo "Usage: $0 SSID PASSWORD NTP_SERVER"
     exit 1
 fi
 
 SSID="$1"
 PASSWORD="$2"
+NTP_SERVER="${3:-pool.ntp.org}"  # Utilise pool.ntp.org si NTP_SERVER n'est pas fourni
 INTERFACE="wlan0"    # Change here in case of different interface
 ETC=/tmp
 
@@ -39,7 +40,7 @@ network={
 }
 TEXT
 
-# 5. Porta su l'interfaccia
+# 5. Attiva l'interfaccia
 ifconfig $INTERFACE up
 
 # 6. Avvia wpa_supplicant
@@ -57,10 +58,10 @@ echo "Connected to $SSID!"
 
 # 9. Sincronizza con ntpd di busybox sulla SD
 if [ -f /home/HACKSD ]; then
-	/mnt/hack/busybox ntpd -d -n -q -p pool.ntp.org
+	/mnt/hack/busybox ntpd -d -n -q -p "$NTP_SERVER"
 	date
 else
-	/tmp/hack/busybox ntpd -d -n -q -p pool.ntp.org
+	/tmp/hack/busybox ntpd -d -n -q -p "$NTP_SERVER"
 	date
 fi
 
@@ -68,4 +69,3 @@ fi
 [ -f /mnt/hack/readip.sh ] && /mnt/hack/readip.sh
 
 #	<EOF>
-
