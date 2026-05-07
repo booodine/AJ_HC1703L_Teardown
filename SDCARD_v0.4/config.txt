@@ -47,6 +47,7 @@ HACKTYPE=SD
 
 SSID='here_your_wifi_ssid'
 PWD='here_your_wifi_password'
+NTP_SERVER='here_your_IP_ntpserver_local'
 
 log=false # if true a /home/log.txt file is created - default: log=false
 
