@@ -112,7 +112,7 @@ $log && echo "-13 start ftpd" >> /mnt/log.txt
 $log && echo "-14 waiting for silencing and wifi connection" >> /mnt/log.txt
 
 # silence the voice WaitWifiConfig.wav copied every reboot from start.sh line 414 or 436
-(sleep 25 && rm /tmp/VOICE/WaitWifiConfig.wav) &
+(sleep 25 && rm /tmp/VOICE/Please_configure_camera_by_AP_hotspot_or_scanning_code.wav) &
 
 # setup WiFi connection after 30s
 # insert the SSID and PWD of your WiFi
